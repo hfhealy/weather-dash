@@ -49,7 +49,6 @@ class App extends Component {
       
 
       showModal (e) {
-
             this.setState({
               show: !this.state.show
             });
@@ -173,7 +172,7 @@ class App extends Component {
 </div>
 </div>
 </div>
-<Modal onClose={this.showModal} show={this.state.show}> Message in Modal</Modal> 
+<Modal onClose={this.showModal} show={this.state.show}></Modal> 
 </div>
 </div>
     )}
