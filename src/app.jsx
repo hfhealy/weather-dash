@@ -3,7 +3,7 @@ import axios from 'axios';
 import Modal from './modal'
 
 //modal wont close, but it will close when i press the modal button again.
-//doesnt close with the close button.
+//doesnt close with the close with the close button
 
 // import { response } from '../server/server';
 // import Modal from "react-bootstrap/Modal";
@@ -21,7 +21,7 @@ class App extends Component {
             tokyo: {},
             show: false
         }
-        
+        this.showModal = this.showModal.bind(this);
     }
 
     componentDidMount(){
@@ -49,9 +49,10 @@ class App extends Component {
       
 
       showModal (e) {
-        this.setState({
-          show: !this.state.show
-        });
+
+            this.setState({
+              show: !this.state.show
+            });
       };
 
         render() {
@@ -79,7 +80,7 @@ class App extends Component {
 
 
         </div>
-        <button  onClick={e => {this.showModal(e)}}> show Modal </button>
+        <button  onClick={e => {this.showModal()}}> show Modal </button>
         
             {/* <img src={`http://openweathermap.org/img/wn/${icon}@2x.png`}
               width="125px" /> */}

@@ -1,14 +1,13 @@
 import React from "react";
-
+import PropTypes from "prop-types";
 
 
 export default class Modal extends React.Component {
 
-    onClose (e) {
-        this.props.onClose && this.props.onClose(e);
-      };
-
-     
+    // onClose(e) {
+    //     this.props.show = false;
+    //     this.props.onClose && this.props.onClose(e);
+    //   };
 
   render() {
     
@@ -16,10 +15,11 @@ export default class Modal extends React.Component {
         return null;
     }
     return (
-        <div>
-          <div>{this.props.children}</div>
+        
+        <div className="myModal">
+          <div>Message in Modal</div>
           <div>
-            <button onClick={e => {this.onClose}}>
+            <button onClick={this.props.onClose}>
               Close
             </button>
           </div>
@@ -27,3 +27,8 @@ export default class Modal extends React.Component {
       );
   }
 }
+
+Modal.propTypes = {
+    onClose: PropTypes.func.isRequired,
+    show: PropTypes.bool.isRequired
+  };
