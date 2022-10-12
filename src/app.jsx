@@ -63,7 +63,7 @@ class App extends Component {
             </h6>
 
             {this.state.dataFetched === false ? <span></span> : 
-            <img src={`http://openweathermap.org/img/wn/${this.state.boston.weather[0].icon}@2x.png`} className="mx-auto"/>}
+            <img src={`http://openweathermap.org/img/wn/${this.state.boston.weather[0].icon}@2x.png`} className="mx-auto" alt="weather-icon"/>}
 
             <button className="btn btn-light shadow" onClick={e => {this.showModal(); this.setState({cityButton: "boston"})}}> More </button>
         </div>
@@ -90,7 +90,7 @@ class App extends Component {
             </h6>
 
             {this.state.dataFetched === false ? <span></span> : 
-            <img src={`http://openweathermap.org/img/wn/${this.state.london.weather[0].icon}@2x.png`} className="mx-auto"/> }
+            <img src={`http://openweathermap.org/img/wn/${this.state.london.weather[0].icon}@2x.png`} className="mx-auto" alt="weather-icon"/> }
 
             <button className="btn btn-light shadow" onClick={e => {this.showModal(); this.setState({cityButton: "london"})}}> More </button>
         </div>
@@ -117,7 +117,7 @@ class App extends Component {
             </h6>
 
             {this.state.dataFetched === false ? <span></span> : 
-            <img src={`http://openweathermap.org/img/wn/${this.state.tokyo.weather[0].icon}@2x.png`} className="mx-auto"/>}
+            <img src={`http://openweathermap.org/img/wn/${this.state.tokyo.weather[0].icon}@2x.png`} className="mx-auto" alt="weather-icon"/>}
 
             <button className="btn btn-light shadow" onClick={e => {this.showModal(); this.setState({cityButton: "tokyo"})}}> More </button>
         </div>
@@ -144,7 +144,7 @@ class App extends Component {
             </h6>
 
             {this.state.dataFetched === false ? <span></span> : 
-            <img src="https://hfh-projects.s3.us-west-1.amazonaws.com/eye-of-sauron.png" className="sauron-img mx-auto mt-3 mb-4"/>}
+            <img src="https://hfh-projects.s3.us-west-1.amazonaws.com/eye-of-sauron.png" className="sauron-img mx-auto mt-3 mb-4" alt="eye-of-sauron"/>}
 
             <button className="btn btn-light shadow" onClick={e => {this.showModal(); this.setState({cityButton: "mordor"})}}> More </button>
         </div>

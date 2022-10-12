@@ -7,7 +7,7 @@ export default class Modal extends React.Component {
     //defines cityView variable to dynamically change modal city data depending on city button clicked
     const cityView = this.props.state[this.props.cityButton];
 
-    //returns nothing if show if false
+    //returns nothing if show is false
     if(!this.props.show){
         return null;
     }
@@ -62,7 +62,7 @@ export default class Modal extends React.Component {
             </div>
         </div>
         <div>
-            <img src={this.props.cityButton === "mordor" ? "https://hfh-projects.s3.us-west-1.amazonaws.com/eye-of-sauron.png" : `http://openweathermap.org/img/wn/${cityView.weather[0].icon}@2x.png`} width="125px" />
+            <img src={this.props.cityButton === "mordor" ? "https://hfh-projects.s3.us-west-1.amazonaws.com/eye-of-sauron.png" : `http://openweathermap.org/img/wn/${cityView.weather[0].icon}@2x.png`} width="125px" alt="weather-icon" />
         </div>
         </div>
         <div className="d-flex justify-content-center">
