@@ -2,15 +2,6 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import Modal from './modal'
 
-//modal wont close, but it will close when i press the modal button again.
-//doesnt close with the close with the close button
-
-// import { response } from '../server/server';
-// import Modal from "react-bootstrap/Modal";
-// import "bootstrap/dist/css/bootstrap.min.css";
-// import 'bootstrap/dist/css/bootstrap.min.css';
-// import { json } from 'express';
-
 class App extends Component {
     constructor(props){
         super(props);
@@ -19,7 +10,9 @@ class App extends Component {
             boston: {},
             london: {},
             tokyo: {},
-            show: false
+            show: false,
+            dataFetched: false,
+            cityButton: ''
         }
         this.showModal = this.showModal.bind(this);
     }
@@ -27,26 +20,20 @@ class App extends Component {
     componentDidMount(){
         axios
         .get(`/search/boston`)        
-        .then(result => this.setState({boston: result.data.main}) );
+        .then(result => this.setState({boston: result.data}) );
         
         axios
         .get(`/search/london`)        
-        .then(result => this.setState({london: result.data.main}) );
+        .then(result => this.setState({london: result.data}) );
 
         axios
         .get(`/search/tokyo`)        
-        .then(result => this.setState({tokyo: result.data.main}) );
+        .then(result => this.setState({tokyo: result.data}) )
+        .then(() => this.setState({dataFetched: true}));
+
+        
         
     }
-    
-    // showModal(e) {
-    //     this.setState({
-    //       show: true
-    //     });
-    //   };
-
-
-      
 
       showModal (e) {
             this.setState({
@@ -55,13 +42,13 @@ class App extends Component {
       };
 
         render() {
-            console.log("45", this.state.boston.temp)
+            
             return (
 <div>
 <div className='row'>
-    <h1 className='text-center'>Weather Dashboard</h1>
+    <h1 className='text-center my-4'>Weather Dashboard</h1>
 </div>
-<div className='row'>
+<div className='row mx-3'>
 <div className='col-12 col-md-3 mb-4'>
 <div className="container h-100">
 <div className="row d-flex justify-content-center align-items-center">
@@ -74,12 +61,11 @@ class App extends Component {
         </div>
 
         <div className="d-flex flex-column text-center mt-3 mb-4">
-          <h6 className="display-4 mb-0 font-weight-bold">{this.state.boston.temp === undefined ? <span></span> : `${this.state.boston.temp.toFixed(0)}°F`}</h6>
+          <h6 className="display-4 mb-0 font-weight-bold">{this.state.dataFetched === false ? <span></span> : `${this.state.boston.main.temp.toFixed(0)}°F`}</h6>
+          {this.state.dataFetched === false ? <span></span> : <img src={`http://openweathermap.org/img/wn/${this.state.boston.weather[0].icon}@2x.png`} className="mx-auto"/> }
           
-
-
+        <button className="btn btn-light shadow" onClick={e => {this.showModal(); this.setState({cityButton: "boston"})}}> More </button>
         </div>
-        <button  onClick={e => {this.showModal()}}> show Modal </button>
         
             {/* <img src={`http://openweathermap.org/img/wn/${icon}@2x.png`}
               width="125px" /> */}
@@ -103,15 +89,10 @@ class App extends Component {
         </div>
 
         <div className="d-flex flex-column text-center mt-3 mb-4">
-        <h6 className="display-4 mb-0 font-weight-bold">{this.state.london.temp === undefined ? <span></span> : `${this.state.london.temp.toFixed(0)}°F`}</h6>
-          
+        <h6 className="display-4 mb-0 font-weight-bold">{this.state.dataFetched === false ? <span></span> : `${this.state.london.main.temp.toFixed(0)}°F`}</h6>
+          {this.state.dataFetched === false ? <span></span> : <img src={`http://openweathermap.org/img/wn/${this.state.london.weather[0].icon}@2x.png`} className="mx-auto"/> }
+          <button className="btn btn-light shadow" onClick={e => {this.showModal(); this.setState({cityButton: "london"})}}> More </button>
         </div>
-
-        
-            {/* <img src={`http://openweathermap.org/img/wn/${icon}@2x.png`}
-              width="125px" /> */}
-         
-
       </div>
     </div>
       
@@ -130,13 +111,12 @@ class App extends Component {
         </div>
 
         <div className="d-flex flex-column text-center mt-3 mb-4">
-        <h6 className="display-4 mb-0 font-weight-bold">{this.state.tokyo.temp === undefined ? <span></span> : `${this.state.tokyo.temp.toFixed(0)}°F`}</h6>
-          
+        <h6 className="display-4 mb-0 font-weight-bold">{this.state.dataFetched === false ? <span></span> : `${this.state.tokyo.main.temp.toFixed(0)}°F`}</h6>
+          {this.state.dataFetched === false ? <span></span> : <img src={`http://openweathermap.org/img/wn/${this.state.tokyo.weather[0].icon}@2x.png`} className="mx-auto"/> }
+          <button className="btn btn-light shadow" onClick={e => {this.showModal(); this.setState({cityButton: "tokyo"})}}> More </button>
         </div>
 
-        
-            {/* <img src={`http://openweathermap.org/img/wn/${icon}@2x.png`}
-              width="125px" /> */}
+
          
 
       </div>
@@ -157,22 +137,16 @@ class App extends Component {
         </div>
 
         <div className="d-flex flex-column text-center mt-3 mb-4">
-        <h6 className="display-4 mb-0 font-weight-bold">{this.state.boston.temp === undefined ? <span></span> : `160°F`}</h6>
-          
+        <h6 className="display-4 mb-0 font-weight-bold">{this.state.dataFetched === false ? <span></span> : `130°F`}</h6>
+        {this.state.dataFetched === false ? <span></span> : <img src="https://hfh-projects.s3.us-west-1.amazonaws.com/eye-of-sauron.png" className="sauron-img mx-auto mt-3 mb-4"/> }
+        <button className="btn btn-light shadow" onClick={e => {this.showModal(); this.setState({cityButton: "mordor"})}}> More </button>
         </div>
-
-        
-            {/* <img src={`http://openweathermap.org/img/wn/${icon}@2x.png`}
-              width="125px" /> */}
-         
-
       </div>
     </div>
-      
 </div>
 </div>
 </div>
-<Modal onClose={this.showModal} show={this.state.show}></Modal> 
+<Modal onClose={this.showModal} show={this.state.show} state={this.state} dataFetched={this.state.dataFetched} cityButton={this.state.cityButton}></Modal> 
 </div>
 </div>
     )}
