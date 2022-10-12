@@ -1,31 +1,29 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Old+Standard+TT:wght@400;700&display=swap');
 
+body {
+  background-image: url("https://hfh-projects.s3.us-west-1.amazonaws.com/weather-dash.png");
+  background-position: 25% 3%; 
+  background-repeat: no-repeat;
+  background-size: 400px 140px;
+}
 .weather-box {
-  background:  linear-gradient(to top left, #0186cd, #00c771);
-  color: white;
-}
-
-.search-history-box {
-  background:  linear-gradient(to top left, #0186cd, #00c771);
-  color: white;
-}
-
-.search-hist-text {
-  color: white;
+  background: rgb(252, 251, 247)!important;
+  color: rgb(45, 45, 45);
+  
 }
 
 #wrapper {
-  /* The Modal (background) */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  padding-top: 100px; /* Location of the box */
+  /* Modal (background) */
+  position: fixed; 
+  z-index: 1; 
+  padding-top: 100px; 
   left: 0;
   top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  width: 100%; 
+  height: 100%; 
+  overflow: auto; 
+  background-color: rgb(0,0,0); 
+  background-color: rgba(0,0,0,0.4); 
 }
 
 .modal-content {
@@ -45,12 +43,22 @@ img {
 }
 
 .card-body {
-  font-family: "Poppins", Arial, Helvetica, sans-serif;
+  font-family: "Old Standard TT", Arial, Helvetica, sans-serif;
   font-weight: 400;
 }
 
 h1 {
-  color: #0186cd;
-  font-family: "Poppins", Arial, Helvetica, sans-serif;
-  font-weight: 600;
+  color:  rgb(144, 133, 91);
+  font-family: "Old Standard TT", Arial, Helvetica, sans-serif;
+  font-size: 5vw!important;
+  margin-top: .7em!important;
+  margin-bottom: .6em!important;
+}
+
+h3 {
+  color: #90855b;
+}
+
+.ms-1 {
+  color: rgb(103, 103, 103);
 }
