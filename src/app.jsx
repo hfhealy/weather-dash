@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 import axios from "axios";
-import Modal from "./modal"
+import Modal from "./modal";
+import Boston from "./boston";
+import London from "./london";
+import Tokyo from "./tokyo";
+import Mordor from "./mordor";
 
 class App extends Component {
     constructor(props){
@@ -41,125 +45,24 @@ class App extends Component {
     render() {
             
         return (
-<div>
-<div className="row">
-    <h1 className="text-center">Weather Dashboard</h1>
-</div>
-<div className="row mx-3">
-<div className="boston-column col-12 col-md-3 mb-4">
-<div className="container h-100">
-<div className="row d-flex justify-content-center align-items-center">
+<div className="container">
+    <div className="row">
+        <h1 className="text-center">Weather Dashboard</h1>
+    </div>
+    <div className="row mx-3">
 
-    <div className="card weather-box border shadow">
-        <div className="card-body p-4">
-        <div className="d-flex">
-            <h3 className="flex-grow-1 text-center mt-3 mb-0">Boston</h3>
-        </div>
+        <Boston dataFetched={this.state.dataFetched} state={this.state} onClick={e => {this.showModal(); this.setState({cityButton: "boston"})}}/>
 
-        <div className="d-flex flex-column text-center mt-3 mb-4">
-            <h6 className="display-4 mb-0 font-weight-bold">
-            {this.state.dataFetched === false ? <span></span> : 
-            `${this.state.boston.main.temp.toFixed(0)}°F`}
-            </h6>
+        <London dataFetched={this.state.dataFetched} state={this.state} onClick={e => {this.showModal(); this.setState({cityButton: "london"})}}/>
 
-            {this.state.dataFetched === false ? <span></span> : 
-            <img src={`http://openweathermap.org/img/wn/${this.state.boston.weather[0].icon}@2x.png`} className="mx-auto" alt="weather-icon"/>}
+        <Tokyo dataFetched={this.state.dataFetched} state={this.state} onClick={e => {this.showModal(); this.setState({cityButton: "tokyo"})}}/>
 
-            <button className="btn btn-light shadow" onClick={e => {this.showModal(); this.setState({cityButton: "boston"})}}> More </button>
-        </div>
-        </div>
+        <Mordor dataFetched={this.state.dataFetched} onClick={e => {this.showModal(); this.setState({cityButton: "mordor"})}}/>
+
+        <Modal onClose={this.showModal} show={this.state.show} state={this.state} dataFetched={this.state.dataFetched} cityButton={this.state.cityButton}></Modal> 
+
     </div>
 </div>
-</div>
-</div>
-
-<div className="london-column col-12 col-md-3 mb-4">
-<div className="container h-100">
-<div className="row d-flex justify-content-center align-items-center">
-
-    <div className="card weather-box border shadow">
-        <div className="card-body p-4">
-        <div className="d-flex">
-            <h3 className="flex-grow-1 text-center mt-3 mb-0">London</h3>
-        </div>
-
-        <div className="d-flex flex-column text-center mt-3 mb-4">
-            <h6 className="display-4 mb-0 font-weight-bold">
-            {this.state.dataFetched === false ? <span></span> : 
-            `${this.state.london.main.temp.toFixed(0)}°F`}
-            </h6>
-
-            {this.state.dataFetched === false ? <span></span> : 
-            <img src={`http://openweathermap.org/img/wn/${this.state.london.weather[0].icon}@2x.png`} className="mx-auto" alt="weather-icon"/> }
-
-            <button className="btn btn-light shadow" onClick={e => {this.showModal(); this.setState({cityButton: "london"})}}> More </button>
-        </div>
-        </div>
-    </div>
-</div>
-</div>
-</div>
-
-<div className="tokyo-column col-12 col-md-3 mb-4">
-<div className="container h-100">
-<div className="row d-flex justify-content-center align-items-center">
-
-    <div className="card weather-box border shadow">
-        <div className="card-body p-4">
-        <div className="d-flex">
-            <h3 className="flex-grow-1 text-center mt-3 mb-0">Tokyo</h3>
-        </div>
-
-        <div className="d-flex flex-column text-center mt-3 mb-4">
-            <h6 className="display-4 mb-0 font-weight-bold">
-            {this.state.dataFetched === false ? <span></span> : 
-            `${this.state.tokyo.main.temp.toFixed(0)}°F`}
-            </h6>
-
-            {this.state.dataFetched === false ? <span></span> : 
-            <img src={`http://openweathermap.org/img/wn/${this.state.tokyo.weather[0].icon}@2x.png`} className="mx-auto" alt="weather-icon"/>}
-
-            <button className="btn btn-light shadow" onClick={e => {this.showModal(); this.setState({cityButton: "tokyo"})}}> More </button>
-        </div>
-    </div>
-</div>
-</div>
-</div>
-</div>
-
-<div className="mordor-column col-12 col-md-3 mb-4">
-<div className="container h-100">
-<div className="row d-flex justify-content-center align-items-center">
-
-    <div className="card weather-box border shadow">
-        <div className="card-body p-4">
-        <div className="d-flex">
-            <h3 className="flex-grow-1 text-center mt-3 mb-0">Mordor</h3>
-        </div>
-
-        <div className="d-flex flex-column text-center mt-3 mb-4">
-            <h6 className="display-4 mb-0 font-weight-bold">
-            {this.state.dataFetched === false ? <span></span> : 
-            `130°F`}
-            </h6>
-
-            {this.state.dataFetched === false ? <span></span> : 
-            <img src="https://hfh-projects.s3.us-west-1.amazonaws.com/eye-of-sauron.png" className="sauron-img mx-auto mt-3 mb-4" alt="eye-of-sauron"/>}
-
-            <button className="btn btn-light shadow" onClick={e => {this.showModal(); this.setState({cityButton: "mordor"})}}> More </button>
-        </div>
-    </div>
-</div>
-</div>
-</div>
-</div>
-
-<Modal onClose={this.showModal} show={this.state.show} state={this.state} dataFetched={this.state.dataFetched} cityButton={this.state.cityButton}></Modal> 
-
-</div>
-</div>
-
     )}
-
 }
     export default App;
